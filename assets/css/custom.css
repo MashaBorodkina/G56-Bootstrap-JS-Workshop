@@ -1,0 +1,9 @@
+/*transparent background table*/
+.table.table-cols-colored {
+  --bs-table-bg: transparent;
+}
+
+.table.table-hover {
+  --bs-table-hover-bg: rgba(0, 0, 0, 0.2);
+  --bs-table-hover-color: rgba(235, 229, 229, 0.868);
+}
