@@ -4,3 +4,20 @@ body {
 label {
   font-size: 0.85rem;
 }
+.form-control::placeholder {
+  font-size: 0.75rem;
+}
+.form-select:invalid {
+  color: var(--bs-secondary-color);
+  font-size: 0.75rem;
+}
+.form-select:valid {
+  color: var(--bs-body-color);
+  font-size: 0.75rem;
+}
+.font-size {
+  font-size: 0.75rem;
+}
+.font-size-ExToDo {
+  font-size: 0.65rem;
+}
