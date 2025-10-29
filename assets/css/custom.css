@@ -4,7 +4,7 @@ body {
 label {
   font-size: 0.85rem;
 }
-.form-control::placeholder {
+.form-control {
   font-size: 0.75rem;
 }
 .form-select:invalid {
