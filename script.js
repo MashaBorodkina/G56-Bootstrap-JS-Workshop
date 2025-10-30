@@ -26,6 +26,7 @@ function addTodo(event) {
 
   const cloneElement = document.getElementById("list-element").cloneNode(true);
   cloneElement.removeAttribute("id");
+  cloneElement.classList.add("todo-item");
   cloneElement.classList.remove("d-none");
 
   // get form values
