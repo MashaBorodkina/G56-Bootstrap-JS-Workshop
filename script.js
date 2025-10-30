@@ -15,3 +15,35 @@ function addAssignedToOptions() {
   });
 }
 addAssignedToOptions();
+
+// Add Todo to List
+
+const pushButton = document.getElementById("add-todo");
+pushButton.addEventListener("click", addTodo);
+
+function addTodo(event) {
+  event.preventDefault();
+
+  const cloneElement = document.getElementById("list-element").cloneNode(true);
+  cloneElement.removeAttribute("id");
+  cloneElement.classList.remove("d-none");
+
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
+  const due = document.getElementById("due-date").value;
+  const select = document.getElementById("assign");
+  const assignedToSelect =
+    document.getElementById("assign").options[select.selectedIndex].text;
+
+  cloneElement.querySelector(".title-list-element").textContent = title;
+  cloneElement.querySelector(".description-list-element p").textContent =
+    description;
+  cloneElement.querySelector(".due-list-element").textContent = due;
+  cloneElement.querySelector(".assign-list-element").textContent =
+    assignedToSelect;
+
+  const listContainer = document.getElementById("todo-list-container");
+  listContainer.appendChild(cloneElement);
+
+  document.getElementById("form-container").reset();
+}
