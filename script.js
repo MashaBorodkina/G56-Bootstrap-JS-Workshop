@@ -67,3 +67,21 @@ function addTodo(event) {
 
   document.getElementById("form-container").reset();
 }
+
+// ---------- Remove existing Todo from List ----------
+
+const deleteButtons = document.querySelectorAll(".btn-outline-danger");
+const listContainer = document.getElementById("todo-list-container");
+
+listContainer.addEventListener("click", function (event) {
+  let target = event.target;
+  if (target.tagName === "I") {
+    target = target.closest("button");
+  }
+  if (target && target.classList.contains("btn-outline-danger")) {
+    const todoItem = target.closest(".todo-item");
+    if (todoItem) {
+      todoItem.remove();
+    }
+  }
+});
