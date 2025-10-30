@@ -81,7 +81,10 @@ listContainer.addEventListener("click", function (event) {
   if (target && target.classList.contains("btn-outline-danger")) {
     const todoItem = target.closest(".todo-item");
     if (todoItem) {
-      todoItem.remove();
+      const ok = confirm("Are you sure you want to delete this todo item?");
+      if (ok) {
+        todoItem.remove();
+      }
     }
   }
 });
