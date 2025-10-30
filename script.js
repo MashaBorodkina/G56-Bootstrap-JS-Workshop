@@ -43,7 +43,10 @@ function addTodo(event) {
   cloneElement.querySelector(".title-list-element").textContent = title;
   cloneElement.querySelector(".description-list-element p").textContent =
     description;
-  cloneElement.querySelector(".due-list-element").textContent = due;
+
+  const dueEl = cloneElement.querySelector(".due-list-element");
+  dueEl.textContent = `Due: ${due}`;
+
   cloneElement.querySelector(".assign-list-element").textContent =
     assignedToSelect;
 
