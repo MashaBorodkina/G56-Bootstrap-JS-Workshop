@@ -1,4 +1,4 @@
-// Assigned to person
+// --------- Assigned to person ------------
 
 const assignedTo = [
   { id: 1, name: "Alice" },
@@ -16,7 +16,7 @@ function addAssignedToOptions() {
 }
 addAssignedToOptions();
 
-// Add Todo to List
+// ---------- Add Todo to List ----------
 
 const pushButton = document.getElementById("add-todo");
 pushButton.addEventListener("click", addTodo);
