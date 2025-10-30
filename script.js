@@ -50,6 +50,15 @@ function addTodo(event) {
   cloneElement.querySelector(".assign-list-element").textContent =
     assignedToSelect;
 
+  // add data to Created At
+  const now = new Date();
+  const createdAtElement = cloneElement.querySelector(".created-list-element");
+  const datePart = now.toISOString().split("T")[0];
+  const timePart = now.toTimeString().split(" ")[0];
+  createdAtElement.textContent += `${datePart} ${timePart}`;
+
+  // append cloned element to list container
+
   const listContainer = document.getElementById("todo-list-container");
   listContainer.appendChild(cloneElement);
 
