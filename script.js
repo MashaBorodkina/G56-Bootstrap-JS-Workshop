@@ -72,6 +72,7 @@ function addTodo(event) {
 
 const deleteButtons = document.querySelectorAll(".btn-outline-danger");
 const listContainer = document.getElementById("todo-list-container");
+let currentEditingTodo = null;
 
 listContainer.addEventListener("click", function (event) {
   let target = event.target;
@@ -86,5 +87,37 @@ listContainer.addEventListener("click", function (event) {
         todoItem.remove();
       }
     }
+  }
+  // Edit existing Todo in List
+  if (target && target.classList.contains("btn-outline-secondary")) {
+    const todoItem = target.closest(".todo-item");
+    if (!todoItem) return;
+
+    currentEditingTodo = todoItem;
+
+    const titleEl = todoItem.querySelector(".title-list-element");
+    const descriptionEl = todoItem.querySelector(".description-list-element p");
+    const dueEl = todoItem.querySelector(".due-list-element");
+    const assignEl = todoItem.querySelector(".assign-list-element");
+
+    document.getElementById("edit-title").value = titleEl.textContent.trim();
+    document.getElementById("edit-description").value =
+      descriptionEl.textContent.trim();
+    document.getElementById("edit-due-date").value = dueEl.textContent.replace(
+      "Due: ",
+      ""
+    );
+    const assignSelect = document.getElementById("edit-assign");
+    for (let i = 0; i < assignSelect.options.length; i++) {
+      if (assignSelect.options[i].text === assignEl.textContent.trim()) {
+        assignSelect.selectedIndex = i;
+        break;
+      }
+    }
+
+    const editModal = new bootstrap.Modal(
+      document.getElementById("editTodoModal")
+    );
+    editModal.show();
   }
 });
