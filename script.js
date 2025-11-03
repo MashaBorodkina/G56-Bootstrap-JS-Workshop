@@ -89,7 +89,7 @@ listContainer.addEventListener("click", function (event) {
     }
   }
   // Edit existing Todo in List
-  if (target && target.classList.contains("btn-outline-secondary")) {
+  if (target && target.classList.contains("btn-outline-primary")) {
     const todoItem = target.closest(".todo-item");
     if (!todoItem) return;
 
@@ -103,7 +103,7 @@ listContainer.addEventListener("click", function (event) {
     document.getElementById("edit-title").value = titleEl.textContent.trim();
     document.getElementById("edit-description").value =
       descriptionEl.textContent.trim();
-    document.getElementById("edit-due-date").value = dueEl.textContent.replace(
+    document.getElementById("edit-due").value = dueEl.textContent.replace(
       "Due: ",
       ""
     );
@@ -115,40 +115,37 @@ listContainer.addEventListener("click", function (event) {
       }
     }
 
-    const editModal = new bootstrap.Modal(
-      document.getElementById("editTodoModal")
-    );
+    const editModal = new bootstrap.Modal(document.getElementById("editModal"));
     editModal.show();
   }
+});
 
-  // ------ Save Edited Todo ------
+// ------ Save Edited Todo ------
 
-  const saveEditButton = document.getElementById("save-edit-todo");
-  saveEditButton.addEventListener("click", function () {
-    if (!currentEditingTodo) return;
-    const newTitle = document.getElementById("edit-title").value.trim();
-    const newDescription = document
-      .getElementById("edit-description")
-      .value.trim();
-    const newDue = document.getElementById("edit-due-date").value;
-    const newAssignSelect = document.getElementById("edit-assign");
-    const newAssignedTo =
-      newAssignSelect.options[newAssignSelect.selectedIndex].text;
+const saveEditButton = document.getElementById("save-changes-btn");
+saveEditButton.addEventListener("click", function () {
+  if (!currentEditingTodo) return;
+  const newTitle = document.getElementById("edit-title").value.trim();
+  const newDescription = document
+    .getElementById("edit-description")
+    .value.trim();
+  const newDue = document.getElementById("edit-due").value;
+  const newAssignSelect = document.getElementById("edit-assign");
+  const newAssignedTo =
+    newAssignSelect.options[newAssignSelect.selectedIndex].text;
 
-    currentEditingTodo.querySelector(".title-list-element").textContent =
-      newTitle;
-    currentEditingTodo.querySelector(
-      ".description-list-element p"
-    ).textContent = newDescription;
-    currentEditingTodo.querySelector(
-      ".due-list-element"
-    ).textContent = `Due: ${newDue}`;
-    currentEditingTodo.querySelector(".assign-list-element").textContent =
-      newAssignedTo;
+  currentEditingTodo.querySelector(".title-list-element").textContent =
+    newTitle;
+  currentEditingTodo.querySelector(".description-list-element p").textContent =
+    newDescription;
+  currentEditingTodo.querySelector(
+    ".due-list-element"
+  ).textContent = `Due: ${newDue}`;
+  currentEditingTodo.querySelector(".assign-list-element").textContent =
+    newAssignedTo;
 
-    const editModalEl = document.getElementById("editTodoModal");
-    const editModal = bootstrap.Modal.getInstance(editModalEl);
-    editModal.hide();
-    currentEditingTodo = null;
-  });
+  const editModalEl = document.getElementById("editModal");
+  const editModal = bootstrap.Modal.getInstance(editModalEl);
+  editModal.hide();
+  currentEditingTodo = null;
 });
