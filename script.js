@@ -120,4 +120,35 @@ listContainer.addEventListener("click", function (event) {
     );
     editModal.show();
   }
+
+  // ------ Save Edited Todo ------
+
+  const saveEditButton = document.getElementById("save-edit-todo");
+  saveEditButton.addEventListener("click", function () {
+    if (!currentEditingTodo) return;
+    const newTitle = document.getElementById("edit-title").value.trim();
+    const newDescription = document
+      .getElementById("edit-description")
+      .value.trim();
+    const newDue = document.getElementById("edit-due-date").value;
+    const newAssignSelect = document.getElementById("edit-assign");
+    const newAssignedTo =
+      newAssignSelect.options[newAssignSelect.selectedIndex].text;
+
+    currentEditingTodo.querySelector(".title-list-element").textContent =
+      newTitle;
+    currentEditingTodo.querySelector(
+      ".description-list-element p"
+    ).textContent = newDescription;
+    currentEditingTodo.querySelector(
+      ".due-list-element"
+    ).textContent = `Due: ${newDue}`;
+    currentEditingTodo.querySelector(".assign-list-element").textContent =
+      newAssignedTo;
+
+    const editModalEl = document.getElementById("editTodoModal");
+    const editModal = bootstrap.Modal.getInstance(editModalEl);
+    editModal.hide();
+    currentEditingTodo = null;
+  });
 });
